@@ -1,0 +1,3 @@
+async () => {
+  startServer(app, port);
+};

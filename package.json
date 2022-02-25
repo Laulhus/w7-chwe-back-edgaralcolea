@@ -20,5 +20,20 @@
     "start-dev": "nodemon . -q",
     "test": "jest --runInBand --detectOpenHandles",
     "coverage": "jest --watchAll --coverage"
-  }
+  },
+  "name": "back",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Laulhus/w7-chwe-back-edgaralcolea.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Laulhus/w7-chwe-back-edgaralcolea/issues"
+  },
+  "homepage": "https://github.com/Laulhus/w7-chwe-back-edgaralcolea#readme",
+  "description": ""
 }

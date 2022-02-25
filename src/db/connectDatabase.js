@@ -1,4 +1,6 @@
+const chalk = require("chalk");
 const mongoose = require("mongoose");
+const debug = require("debug")("myFriends:db");
 
 const connectDatabase = (connectString) =>
   new Promise((resolve, reject) => {

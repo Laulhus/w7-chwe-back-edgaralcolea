@@ -1,7 +1,9 @@
 {
   "dependencies": {
+    "@types/jest": "^27.4.1",
     "debug": "^4.3.3",
     "dotenv": "^16.0.0",
+    "jest": "^27.5.1",
     "mongoose": "^6.2.3"
   },
   "devDependencies": {

@@ -1,3 +1,6 @@
+const debug = require("debug")("myFriends:server");
+const chalk = require("chalk");
+
 const startServer = (app, port) =>
   new Promise((resolve, reject) => {
     const server = app.listen(port, () => {

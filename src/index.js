@@ -12,7 +12,7 @@ const connectString = process.env.MONGO_CONNECT;
   try {
     await connectDatabase(connectString);
     await startServer(app, port);
-    debug(chalk.bgMagenta.greenBright(`Connection succesful!`));
+    debug(chalk.bgGray.greenBright(`Connection succesful!`));
   } catch (error) {
     debug(chalk.redBright(`Error: ${error.message}`));
   }

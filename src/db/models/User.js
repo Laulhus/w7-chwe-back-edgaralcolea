@@ -5,10 +5,12 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-
   password: {
     type: String,
     required: true,
+  },
+  profile: {
+    type: String,
   },
   name: {
     type: String,
@@ -27,4 +29,6 @@ const userSchema = new Schema({
   },
 });
 
-const User = model("User", userSchema);
+const User = model("User", userSchema, "Users");
+
+module.exports = User;

@@ -1,17 +1,14 @@
+const User = require("../../db/models/User");
+
 const userRegister = async (req, res, next) => {
   try {
     const createdUser = await User.create(req.body);
-    if (createdUser) {
-      res.json(createdUser);
-    } else {
-      const error = new Error("Invalid data format");
-      error.code = 400;
-      next(error);
-    }
+    res.json(createdUser);
   } catch (error) {
-    error.code = 500;
-    error.message = "Couldn't create user";
+    error.code = 400;
+    error.message = "Invalid data format";
     next(error);
   }
 };
+
 module.exports = userRegister;

@@ -5,8 +5,11 @@
     "debug": "^4.3.3",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "helmet": "^5.0.2",
     "jest": "^27.5.1",
-    "mongoose": "^6.2.3"
+    "mongoose": "^6.2.3",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15"
   },
   "devDependencies": {
     "eslint": "^8.9.0",
@@ -33,6 +36,15 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Laulhus/w7-chwe-back-edgaralcolea/issues"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "!src/index.js",
+      "!src/db/connectDatabase.js",
+      "!src/server/index.js",
+      "src/**/*.js",
+      "!src/**/*.test.js"
+    ]
   },
   "homepage": "https://github.com/Laulhus/w7-chwe-back-edgaralcolea#readme",
   "description": ""

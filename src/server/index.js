@@ -1,7 +1,7 @@
 const express = require("express");
 const helmet = require("helmet");
 const morgan = require("morgan");
-const userRegister = require("./controllers/userController");
+const { userRegister } = require("./controllers/userController");
 const { notFoundError, generalError } = require("./middlewares/errors");
 
 const app = express();

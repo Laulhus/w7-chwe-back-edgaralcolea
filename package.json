@@ -41,11 +41,11 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "!src/index.js",
-      "!src/db/connectDatabase.js",
-      "!src/server/index.js",
       "src/**/*.js",
-      "!src/**/*.test.js"
+      "!src/**/*.test.js",
+      "!src/**/index.js",
+      "!src/**/connectDatabase.js",
+      "!src/**/startServer.js"
     ]
   },
   "homepage": "https://github.com/Laulhus/w7-chwe-back-edgaralcolea#readme",

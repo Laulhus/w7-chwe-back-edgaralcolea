@@ -6,10 +6,10 @@ const {
 } = require("../server/controllers/userController");
 
 describe("Given a userRegister controller", () => {
-  describe("When it receives a request with an user", () => {
-    test("Then it should call json method of the received response", async () => {
+  describe("When it receives a response and a request with a valid user", () => {
+    test("Then it should call the response json method with the created user", async () => {
       const user = {
-        username: "Testman",
+        userName: "Testiarman",
         password: "testpass",
         name: "Testy",
         lastName: "McTest",
@@ -21,22 +21,48 @@ describe("Given a userRegister controller", () => {
         body: user,
       };
       const res = {
+        status: jest.fn().mockReturnThis(),
         json: jest.fn(),
       };
-
+      const next = jest.fn();
+      User.findOne = jest.fn().mockResolvedValue(null);
       User.create = jest.fn().mockResolvedValue(req.body);
 
-      await userRegister(req, res);
+      await userRegister(req, res, next);
 
       expect(res.json).toHaveBeenCalled();
       expect(res.json).toHaveBeenCalledWith(user);
     });
   });
 
+  describe("When it receives a response and a request with an user that already exists", () => {
+    test("Then it should call the response json method with the created user", async () => {
+      const user = {
+        userName: "Testiarman",
+        password: "testpass",
+        name: "Testy",
+        lastName: "McTest",
+        age: 30,
+        city: "Testingvania",
+      };
+      const req = {
+        body: user,
+      };
+      const error = new Error("This username already exists");
+      const next = jest.fn();
+      User.findOne = jest.fn().mockResolvedValue(user);
+      User.create = jest.fn().mockResolvedValue(req.body);
+
+      await userRegister(req, null, next);
+
+      expect(next).toHaveBeenCalledWith(error);
+    });
+  });
+
   describe("When it receives request with invalid data format", () => {
     test("Then it should call next with error 'Invalid data format'", async () => {
       const user = {
-        username: "Testman",
+        userName: "Testman",
         name: "Testy",
         lastName: "McTest",
         age: 30,
@@ -48,6 +74,7 @@ describe("Given a userRegister controller", () => {
       const next = jest.fn();
       const error = new Error("Invalid data format");
 
+      User.findOne = jest.fn().mockResolvedValue(null);
       User.create = jest.fn().mockResolvedValue(null);
 
       await userRegister(req, null, next);
@@ -56,7 +83,7 @@ describe("Given a userRegister controller", () => {
     });
   });
 
-  describe("When it receives a request without and database isn't connected", () => {
+  describe("When it receives a request and database isn't connected", () => {
     test("Then it should call next method with an error: 'Couldn't create user", async () => {
       const next = jest.fn();
       const req = {
@@ -64,6 +91,7 @@ describe("Given a userRegister controller", () => {
       };
       const error = new Error("Couldn't create user");
 
+      User.findOne = jest.fn().mockResolvedValue(null);
       User.create = jest.fn().mockRejectedValue(error);
 
       await userRegister(req, null, next);

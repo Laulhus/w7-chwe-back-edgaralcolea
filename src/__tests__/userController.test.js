@@ -84,7 +84,7 @@ describe("Given a userRegister controller", () => {
     test("Then it should call next method with an error: 'Couldn't create user", async () => {
       const next = jest.fn();
       const req = {
-        body: { name: "Testman" },
+        body: { name: "Testman", password: "hola" },
       };
       const error = new Error("Couldn't create user");
 

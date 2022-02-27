@@ -3,16 +3,22 @@ const bcrypt = require("bcrypt");
 const User = require("../../db/models/User");
 
 const userRegister = async (req, res, next) => {
+  const { userName, password } = req.body;
   try {
-    const { userName } = req.body;
     const usedUserName = await User.findOne({ userName });
     if (!usedUserName) {
-      const createdUser = await User.create(req.body);
+      const encryptedPassword = await bcrypt.hash(password, 10);
+      console.log(req.file);
+      const createdUser = await User.create({
+        ...req.body,
+        password: encryptedPassword,
+      });
       res.status(201).json(createdUser);
     } else {
       const error = new Error("This username already exists");
       error.code = 400;
       next(error);
+      return;
     }
   } catch (error) {
     error.code = 400;

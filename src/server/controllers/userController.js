@@ -35,11 +35,11 @@ const userLogin = async (req, res, next) => {
       error.code = 401;
       next(error);
     } else {
-      const UserDate = {
-        username: user.username,
+      const userData = {
+        userName: user.userName,
         id: user.id,
       };
-      const token = jwt.sign(UserDate, process.env.JWT_SECRET);
+      const token = jwt.sign(userData, process.env.JWT_SECRET);
       res.json({ token });
     }
   }

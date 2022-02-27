@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1645993680878" clover="3.2.0">
-  <project timestamp="1645993680878" name="All files">
-    <metrics statements="66" coveredstatements="59" conditionals="12" coveredconditionals="10" methods="5" coveredmethods="4" elements="83" coveredelements="73" complexity="0" loc="66" ncloc="66" packages="4" files="4" classes="4"/>
+<coverage generated="1645993751920" clover="3.2.0">
+  <project timestamp="1645993751920" name="All files">
+    <metrics statements="65" coveredstatements="59" conditionals="12" coveredconditionals="10" methods="5" coveredmethods="4" elements="82" coveredelements="73" complexity="0" loc="65" ncloc="65" packages="4" files="4" classes="4"/>
     <package name="db.models">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="User.js" path="D:\Coding\ISDI Coders\Daily Challenges\Week 7\Challenge Weekend - Red Social\back2\src\db\models\User.js">
@@ -13,9 +13,9 @@
       </file>
     </package>
     <package name="server.controllers">
-      <metrics statements="42" coveredstatements="35" conditionals="8" coveredconditionals="6" methods="3" coveredmethods="2"/>
+      <metrics statements="41" coveredstatements="35" conditionals="8" coveredconditionals="6" methods="3" coveredmethods="2"/>
       <file name="userController.js" path="D:\Coding\ISDI Coders\Daily Challenges\Week 7\Challenge Weekend - Red Social\back2\src\server\controllers\userController.js">
-        <metrics statements="42" coveredstatements="35" conditionals="8" coveredconditionals="6" methods="3" coveredmethods="2"/>
+        <metrics statements="41" coveredstatements="35" conditionals="8" coveredconditionals="6" methods="3" coveredmethods="2"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
@@ -30,34 +30,33 @@
         <line num="13" count="3" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
+        <line num="16" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
         <line num="27" count="1" type="stmt"/>
         <line num="28" count="1" type="stmt"/>
         <line num="29" count="1" type="stmt"/>
-        <line num="30" count="1" type="stmt"/>
+        <line num="32" count="4" type="stmt"/>
         <line num="33" count="4" type="stmt"/>
         <line num="34" count="4" type="stmt"/>
-        <line num="35" count="4" type="stmt"/>
-        <line num="39" count="2" type="stmt"/>
+        <line num="38" count="2" type="stmt"/>
+        <line num="39" count="6" type="stmt"/>
         <line num="40" count="6" type="stmt"/>
-        <line num="41" count="6" type="stmt"/>
-        <line num="42" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="41" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="42" count="2" type="stmt"/>
         <line num="43" count="2" type="stmt"/>
         <line num="44" count="2" type="stmt"/>
-        <line num="45" count="2" type="stmt"/>
-        <line num="47" count="4" type="stmt"/>
-        <line num="48" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="46" count="4" type="stmt"/>
+        <line num="47" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="48" count="2" type="stmt"/>
         <line num="49" count="2" type="stmt"/>
         <line num="50" count="2" type="stmt"/>
-        <line num="51" count="2" type="stmt"/>
-        <line num="53" count="2" type="stmt"/>
+        <line num="52" count="2" type="stmt"/>
+        <line num="56" count="2" type="stmt"/>
         <line num="57" count="2" type="stmt"/>
-        <line num="58" count="2" type="stmt"/>
-        <line num="63" count="2" type="stmt"/>
+        <line num="62" count="2" type="stmt"/>
       </file>
     </package>
     <package name="server.middlewares">

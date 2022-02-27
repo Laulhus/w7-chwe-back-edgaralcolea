@@ -2,7 +2,19 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const fs = require("fs");
 const path = require("path");
+const { initializeApp } = require("firebase/app");
 const User = require("../../db/models/User");
+
+const firebaseConfig = {
+  apiKey: process.env.FIREBASE_KEY,
+  authDomain: "myfriends-3a250.firebaseapp.com",
+  projectId: "myfriends-3a250",
+  storageBucket: "myfriends-3a250.appspot.com",
+  messagingSenderId: "921378609723",
+  appId: "1:921378609723:web:2c9c9ab65a1e1f9a35da1e",
+};
+
+const firebaseApp = initializeApp(firebaseConfig);
 
 const userRegister = async (req, res, next) => {
   const { userName, password } = req.body;
@@ -10,7 +22,6 @@ const userRegister = async (req, res, next) => {
     const usedUserName = await User.findOne({ userName });
     if (!usedUserName) {
       const encryptedPassword = await bcrypt.hash(password, 10);
-      console.log(req.file.originalName);
       const oldFileName = path.join("uploads", req.file.filename);
       const newFileName = path.join("uploads", req.file.originalname);
       fs.rename(oldFileName, newFileName, (error) => {

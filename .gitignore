@@ -2,3 +2,4 @@ node_modules
 .scannerwork
 .env
 coverage
+uploads

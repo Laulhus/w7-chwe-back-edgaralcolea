@@ -62,11 +62,8 @@ describe("Given a userRegister controller", () => {
   describe("When it receives request with invalid data format", () => {
     test("Then it should call next with error 'Invalid data format'", async () => {
       const user = {
-        userName: "Testman",
+        userName: "Testasaman",
         name: "Testy",
-        lastName: "McTest",
-        age: 30,
-        city: "Testingvania",
       };
       const req = {
         body: user,

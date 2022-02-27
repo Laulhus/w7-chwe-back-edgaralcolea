@@ -4,8 +4,16 @@ const User = require("../../db/models/User");
 
 const userRegister = async (req, res, next) => {
   try {
-    const createdUser = await User.create(req.body);
-    res.json(createdUser);
+    const { userName } = req.body;
+    const usedUserName = await User.findOne({ userName });
+    if (!usedUserName) {
+      const createdUser = await User.create(req.body);
+      res.status(201).json(createdUser);
+    } else {
+      const error = new Error("This username already exists");
+      error.code = 400;
+      next(error);
+    }
   } catch (error) {
     error.code = 400;
     error.message = "Invalid data format";
@@ -14,11 +22,11 @@ const userRegister = async (req, res, next) => {
 };
 
 const userLogin = async (req, res, next) => {
-  const { username, password } = req.body;
-  const user = await User.findOne({ username });
+  const { userName, password } = req.body;
+  const user = await User.findOne({ userName });
   if (!user) {
     const error = new Error("User not found");
-    error.code = 401;
+    error.code = 404;
     next(error);
   } else {
     const correctPassword = await bcrypt.compare(password, user.password);

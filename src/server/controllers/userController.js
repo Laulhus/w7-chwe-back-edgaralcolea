@@ -14,11 +14,11 @@ const userRegister = async (req, res, next) => {
 };
 
 const userLogin = async (req, res, next) => {
-  const { username, password } = req.body;
-  const user = await User.findOne({ username });
+  const { userName, password } = req.body;
+  const user = await User.findOne({ userName });
   if (!user) {
     const error = new Error("User not found");
-    error.code = 401;
+    error.code = 404;
     next(error);
   } else {
     const correctPassword = await bcrypt.compare(password, user.password);

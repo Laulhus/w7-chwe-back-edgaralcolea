@@ -60,7 +60,7 @@ describe("Given a userRegister controller", () => {
     test("Then it should call next method with an error: 'Couldn't create user", async () => {
       const next = jest.fn();
       const req = {
-        body: { name: "Lola" },
+        body: { name: "Testman" },
       };
       const error = new Error("Couldn't create user");
 
@@ -121,20 +121,21 @@ describe("Given a userLogin controller", () => {
     test("Then it should call json method of the received response", async () => {
       const req = {
         body: {
-          username: "Lila",
-          password: "rosa",
+          username: "Testman",
+          password: "testpass",
         },
       };
       const user = {
-        username: "Lila",
+        username: "Testman",
         password:
-          "$2b$10$7uqVZ5a5QmeinnPp098Us.09BLm2xUGbB7fC4P8I4lq7n5KWadpRO",
+          "$2b$10$RS6/Q3otj03mJnBDQfERY.c.AA4Y9iZFGVss/JqGoxy81q7eYKmqW",
       };
       const res = {
         json: jest.fn(),
       };
 
-      const token = "flkjakjdf";
+      const token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMWEwZGJhNjVhOTg0NmVmNWU0OGZmNiIsImlhdCI6MTY0NTk1MTM5M30.D1kyjfNYanzotgAwG3qZL95gjP2VpIH7gjrs5sgmdKg";
       User.findOne = jest.fn().mockResolvedValue(user);
       jwt.sign = jest.fn().mockResolvedValue(token);
 

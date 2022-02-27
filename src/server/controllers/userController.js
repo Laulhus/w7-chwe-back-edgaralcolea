@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const fs = require("fs");
+const path = require("path");
 const User = require("../../db/models/User");
 
 const userRegister = async (req, res, next) => {
@@ -8,7 +10,14 @@ const userRegister = async (req, res, next) => {
     const usedUserName = await User.findOne({ userName });
     if (!usedUserName) {
       const encryptedPassword = await bcrypt.hash(password, 10);
-      console.log(req.file);
+      console.log(req.file.originalName);
+      const oldFileName = path.join("uploads", req.file.filename);
+      const newFileName = path.join("uploads", req.file.originalname);
+      fs.rename(oldFileName, newFileName, (error) => {
+        if (error) {
+          next(error);
+        }
+      });
       const createdUser = await User.create({
         ...req.body,
         password: encryptedPassword,

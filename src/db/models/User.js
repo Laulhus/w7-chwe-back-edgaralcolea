@@ -9,7 +9,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  profile: {
+  picture: {
     type: String,
   },
   name: {

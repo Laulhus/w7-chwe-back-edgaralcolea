@@ -1,18 +1,63 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const fs = require("fs");
+const path = require("path");
+const { initializeApp } = require("firebase/app");
+const {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+} = require("firebase/storage");
+const debug = require("debug");
 const User = require("../../db/models/User");
 
+const firebaseConfig = {
+  apiKey: process.env.FIREBASE_KEY,
+  authDomain: "myfriends-3a250.firebaseapp.com",
+  projectId: "myfriends-3a250",
+  storageBucket: "gs://myfriends-3a250.appspot.com",
+  messagingSenderId: "921378609723",
+  appId: "1:921378609723:web:2c9c9ab65a1e1f9a35da1e",
+};
+
+const firebaseApp = initializeApp(firebaseConfig);
+const storage = getStorage(firebaseApp);
+
 const userRegister = async (req, res, next) => {
+  const { userName, password } = req.body;
   try {
-    const { userName } = req.body;
     const usedUserName = await User.findOne({ userName });
     if (!usedUserName) {
-      const createdUser = await User.create(req.body);
-      res.status(201).json(createdUser);
+      const encryptedPassword = await bcrypt.hash(password, 10);
+      const oldFileName = path.join("uploads", req.file.filename);
+      const newFileName = path.join("uploads", req.file.originalname);
+      fs.rename(oldFileName, newFileName, (error) => {
+        if (error) {
+          next(error);
+        }
+      });
+      fs.readFile(newFileName, async (error, file) => {
+        if (error) {
+          next(error);
+        } else {
+          const pictureRef = ref(storage, newFileName);
+          uploadBytes(pictureRef, file);
+          debug("Uploaded file to cloud storage!");
+          const firebaseFileUrl = await getDownloadURL(pictureRef);
+          const createdUser = await User.create({
+            ...req.body,
+            password: encryptedPassword,
+            picture: firebaseFileUrl,
+          });
+          res.status(201).json(createdUser);
+        }
+      });
     } else {
       const error = new Error("This username already exists");
       error.code = 400;
       next(error);
+      return;
     }
   } catch (error) {
     error.code = 400;

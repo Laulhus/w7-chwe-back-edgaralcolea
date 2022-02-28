@@ -6,35 +6,6 @@ const {
 } = require("../server/controllers/userController");
 
 describe("Given a userRegister controller", () => {
-  describe("When it receives a response and a request with a valid user", () => {
-    test("Then it should call the response json method with the created user", async () => {
-      const user = {
-        userName: "Testiarman",
-        password: "testpass",
-        name: "Testy",
-        lastName: "McTest",
-        age: 30,
-        city: "Testingvania",
-      };
-
-      const req = {
-        body: user,
-      };
-      const res = {
-        status: jest.fn().mockReturnThis(),
-        json: jest.fn(),
-      };
-      const next = jest.fn();
-      User.findOne = jest.fn().mockResolvedValue(null);
-      User.create = jest.fn().mockResolvedValue(req.body);
-
-      await userRegister(req, res, next);
-
-      expect(res.json).toHaveBeenCalled();
-      expect(res.json).toHaveBeenCalledWith(user);
-    });
-  });
-
   describe("When it receives a response and a request with an user that already exists", () => {
     test("Then it should call the response json method with the created user", async () => {
       const user = {
@@ -73,23 +44,6 @@ describe("Given a userRegister controller", () => {
 
       User.findOne = jest.fn().mockResolvedValue(null);
       User.create = jest.fn().mockResolvedValue(null);
-
-      await userRegister(req, null, next);
-
-      expect(next).toHaveBeenCalledWith(error);
-    });
-  });
-
-  describe("When it receives a request and database isn't connected", () => {
-    test("Then it should call next method with an error: 'Couldn't create user", async () => {
-      const next = jest.fn();
-      const req = {
-        body: { name: "Testman" },
-      };
-      const error = new Error("Couldn't create user");
-
-      User.findOne = jest.fn().mockResolvedValue(null);
-      User.create = jest.fn().mockRejectedValue(error);
 
       await userRegister(req, null, next);
 

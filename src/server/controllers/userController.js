@@ -50,7 +50,9 @@ const userRegister = async (req, res, next) => {
             password: encryptedPassword,
             picture: firebaseFileUrl,
           });
-          res.status(201).json(createdUser);
+          res
+            .status(201)
+            .json(`User ${createdUser.name} registered succesfully!`);
         }
       });
     } else {

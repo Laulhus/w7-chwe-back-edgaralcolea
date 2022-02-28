@@ -86,25 +86,3 @@ describe("Given a /users/login endpoint", () => {
     });
   });
 });
-
-describe("Given a /users/register endpoint", () => {
-  describe("When it receives a request with method POST and a valid username and password", () => {
-    test("Then it should response with status 201 and the created user", async () => {
-      const user = {
-        name: "Testman",
-        lastName: "McTest",
-        userName: "Testoman",
-        password: "hola",
-        age: 30,
-        city: "Testingvania",
-      };
-
-      const { body } = await request(app)
-        .post("/users/register")
-        .send(user)
-        .expect(201);
-
-      expect(body).toHaveProperty("userName");
-    });
-  });
-});
